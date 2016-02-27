@@ -1,1 +1,6 @@
 # Competency-Tracker
+Competency tracker application:
+
+This app will be used to keep track of people and their competence level (i.e. rookie, sophomore, senior) for various skills that will be entered by the app user. There may exist relationships between the skills that a person selects with other skills e.g. a person can only be a senior software programmer if he/she is a senior tester, etc. In this case, testing will be a prerequisite for senior software programmer. Based on the prerequisites that will be stated on the app for different skills, a person can follow a path to determine what he/she needs to learn to get a desired competency level for a skill. This app can be used by team leaders, business owners, etc. to keep track of the skills of the people under them or keep track of a team in order to delegate tasks to fit peoples skills. Also, it can be used for hiring purposes whereby an employer will login into the app and select the skills they require for a job opening and people that fit those skills will be showcased.
+
+First Feature to be developed: Sign up/ Sign in: a user can sign up into the application creating a profile as a generic user with a username and password. Once a person has signed up for the app, he/she can always sign into the app with there username and password.
