@@ -44,7 +44,7 @@ Vagrant.configure(2) do |config|
   # Example for VirtualBox:
   #
    config.vm.provider "virtualbox" do |vb|
-     vb.customize ["setproperty", "machinefolder", "/home/LABS/scotthanton/Documents/Project/vbox_home"]
+     vb.customize ["setproperty", "machinefolder", "~/Documents/Project/vbox_home"]
    end
   #
   # View the documentation for the provider you are using for more
