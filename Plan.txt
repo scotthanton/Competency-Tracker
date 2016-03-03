@@ -1,0 +1,121 @@
+/**** SCAFFOLDING *****/
+
+/* 
+  Used for authentication and login either user, employee or admin.
+*/
+USER
+	- id
+	- first name
+	- last name
+	- email
+	- password
+	- user type (1 = user, 2 = employer, 9 = admin)
+
+
+/* 
+  Each skill which a user can have for example PHP or Java
+*/
+SKILL
+	- id
+	- name
+
+
+/* 
+  The materials required to learn a specific skill at a specified
+  level of difficulty. For example beginner java, intermediate java,
+  expert java etc. 
+*/
+MATERIALS
+	- skill_id
+	- description
+	- material to learn
+	- level
+
+
+/* 
+  Determines which skills a user has aswell as the level of competency 
+  they have with this skill (level).
+*/ 
+USER_SKILL_ASSIGNMENTS
+	- user_id
+	- skill_id
+	- level
+
+
+/* 
+  Tracks endorsements made by employers or possibly other users 
+*/
+ENDORSEMENTS
+  - user_id
+  - endorser_user_id
+  - user_skill_assignments_id
+  
+
+/* 
+  Determines which skills are required to learn other skills.
+*/
+PREREQUISITS
+	- skill_id
+	- prerequisit_skill_id
+
+
+/* 
+  Skills being looked for by employers. 
+*/
+DEMANDED_SKILLS
+	- employer_user_id
+	- skill_id
+	- level
+
+
+/* 
+  Conversations between users / employers / admins
+*/
+CONVERSATION
+  - user_id_creator
+  - user_id
+  - title
+  - content
+  - time
+  
+
+/* 
+  Any further replies to a conversation
+*/
+REPLIES
+  - user_id
+  - content
+  - time
+  
+  
+/**** Functionalities  ****/
+
+/* 
+  User/Employer/Admin
+*/
+- Login with email and password
+- Change password
+- Search users based on skill(s)
+- View list of skills available
+- View description and material for skills at given difficulty
+- Contact another user through in-site messaging
+
+/* 
+  User 
+*/
+- Add skills to their account
+- Remove skills from their account
+- View skills in high demand
+
+/* 
+  Employer 
+*/
+- Post looking for skills (notify users with skill)
+
+/* 
+  Admin 
+*/
+- Add new skills
+- Add skills to users
+- Remove skills from users 
+- Set custom amount of endorsements for a users skill
