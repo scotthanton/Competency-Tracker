@@ -1,6 +1,16 @@
 <h1>Editing Skill</h1>
 
-<%= render 'form' %>
+<%= form_for @skill do |f| %>
+  
+  <div class="field">
+    <%= f.label :Name %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit "Submit" %>
+  </div>
 
+<% end %>
 <%= link_to 'Show', @skill %> |
 <%= link_to 'Back', skills_path %>
