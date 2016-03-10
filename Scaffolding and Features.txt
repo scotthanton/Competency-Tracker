@@ -10,7 +10,16 @@ USER
 	- first name
 	- last name
 	- email
-	- password
+	- encrypted_password
+	- reset password token
+	- reset password sent time
+	- rememebr me
+	- login count
+	- last sign in
+	- current IP
+	- last IP
+	- created time
+	- updated time 
 	- user type (1 = user, 2 = employer, 9 = admin)
 
 
@@ -20,6 +29,8 @@ USER
 SKILL
 	- id
 	- name
+	- created time
+	- updated time
 
 
 /* 
