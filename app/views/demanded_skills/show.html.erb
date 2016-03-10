@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Employer user:</strong>
+  <%= @demanded_skill.employer_user_id %>
+</p>
+
+<p>
+  <strong>Skill:</strong>
+  <%= @demanded_skill.skill_id %>
+</p>
+
+<p>
+  <strong>Level:</strong>
+  <%= @demanded_skill.level %>
+</p>
+
+<p>
+  <strong>Created at:</strong>
+  <%= @demanded_skill.created_at %>
+</p>
+
+<%= link_to 'Edit', edit_demanded_skill_path(@demanded_skill) %> |
+<%= link_to 'Back', demanded_skills_path %>

@@ -1,0 +1,25 @@
+<%= form_for(@prerequisit) do |f| %>
+  <% if @prerequisit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@prerequisit.errors.count, "error") %> prohibited this prerequisit from being saved:</h2>
+
+      <ul>
+      <% @prerequisit.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :skill_id %><br>
+    <%= f.number_field :skill_id %>
+  </div>
+  <div class="field">
+    <%= f.label :prerequisit_skill_id %><br>
+    <%= f.number_field :prerequisit_skill_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

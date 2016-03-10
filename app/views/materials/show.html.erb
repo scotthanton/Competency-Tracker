@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Skill:</strong>
+  <%= @material.skill_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @material.description %>
+</p>
+
+<p>
+  <strong>Material to learn:</strong>
+  <%= @material.material_to_learn %>
+</p>
+
+<p>
+  <strong>Level:</strong>
+  <%= @material.level %>
+</p>
+
+<p>
+  <strong>Created at:</strong>
+  <%= @material.created_at %>
+</p>
+
+<p>
+  <strong>Updated at:</strong>
+  <%= @material.updated_at %>
+</p>
+
+<%= link_to 'Edit', edit_material_path(@material) %> |
+<%= link_to 'Back', materials_path %>

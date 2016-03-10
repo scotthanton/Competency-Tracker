@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  skill_id: 1
+  description: MyText
+  material_to_learn: MyText
+  level: MyString
+  created_at: 2016-03-10 10:35:01
+  updated_at: 2016-03-10 10:35:01
+
+two:
+  skill_id: 1
+  description: MyText
+  material_to_learn: MyText
+  level: MyString
+  created_at: 2016-03-10 10:35:01
+  updated_at: 2016-03-10 10:35:01
