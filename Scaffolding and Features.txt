@@ -53,7 +53,7 @@ MATERIALS
 USER_SKILL_ASSIGNMENTS
 	- user_id
 	- skill_id
-	- level
+	- level_id
 
 
 /* 
@@ -79,9 +79,16 @@ PREREQUISITS
 DEMANDED_SKILLS
 	- employer_user_id
 	- skill_id
-	- level
+	- level_id
 	- created time
 
+/* 
+  Skills being looked for by employers. 
+*/
+SKILL_LEVELS	
+	- level
+	- created time
+	
 /* 
   Conversations between users / employers / admins
 */
