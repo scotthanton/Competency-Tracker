@@ -43,7 +43,8 @@ MATERIALS
 	- description
 	- material to learn
 	- level
-
+	- created time
+	- updated time 
 
 /* 
   Determines which skills a user has aswell as the level of competency 
@@ -79,7 +80,7 @@ DEMANDED_SKILLS
 	- employer_user_id
 	- skill_id
 	- level
-
+	- created time
 
 /* 
   Conversations between users / employers / admins
@@ -89,7 +90,7 @@ CONVERSATION
   - user_id
   - title
   - content
-  - time
+  - time sent
   
 
 /* 
@@ -98,7 +99,7 @@ CONVERSATION
 REPLIES
   - user_id
   - content
-  - time
+  - time sent
   
   
 /**** Functionalities  ****/
