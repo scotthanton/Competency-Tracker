@@ -1,4 +1,4 @@
 class Reply < ActiveRecord::Base
-
-  belongs_to :conversation
+  has_one :conversation
+  belongs_to :user	
 end

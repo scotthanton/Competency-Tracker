@@ -11,7 +11,12 @@ Rails.application.routes.draw do
   resources :demanded_skills
   resources :materials
   resources :skills
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => :registrations }
+
+ 
+  #for customer devise controller!
+  #devise_for :users, controllers: { sessions: "users/sessions" }
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

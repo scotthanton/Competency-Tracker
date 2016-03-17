@@ -4,7 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def index 
-	render text: "Competency Tracker"
+	render :home
+	#render text: "Competency Tracker"
   end
 
 end
