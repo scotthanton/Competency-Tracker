@@ -33,6 +33,11 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # t.datetime :locked_at
 
 
+	  #Custom Attributes
+	  
+	  t.integer :user_level, default: 0
+	  #End custom attributes
+	  
       t.timestamps null: false
     end
 

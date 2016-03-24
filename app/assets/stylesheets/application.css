@@ -14,5 +14,32 @@
  *= require_self
  */
  
- .pull-right { float:right; }
- .pull-left { float:left; }
+.pull-right { 
+	float:right; 
+}
+
+.pull-left { 
+	float:left; 
+}
+
+.col-centered{
+	float: none;
+    margin: 0 auto;
+}
+
+.col-centered h2 { text-align:center; }
+
+.navbar-brand { 
+	margin-top:15px; 
+}
+
+.dropdown-toggle {
+	margin-top:10px;
+}
+
+a.btn-primary, a.btn-success { color:#fff; }
+
+#footer { 
+	margin-top:20px; 
+}
+ 

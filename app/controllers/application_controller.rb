@@ -8,4 +8,8 @@ class ApplicationController < ActionController::Base
 	#render text: "Competency Tracker"
   end
 
+  def permission_denied
+	page_title = 'Unauthorized Access'
+    render :file => "application/401.html", :status => :unauthorized
+  end
 end

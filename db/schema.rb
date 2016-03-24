@@ -47,11 +47,11 @@ ActiveRecord::Schema.define(version: 20160310160125) do
     t.datetime "updated_at",        null: false
   end
 
-  create_table "prerequisits", force: :cascade do |t|
+  create_table "prerequisites", force: :cascade do |t|
     t.integer  "skill_id"
-    t.integer  "prerequisit_skill_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.integer  "prerequisite_skill_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "replies", force: :cascade do |t|
@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(version: 20160310160125) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.integer  "user_level",             default: 0
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
   end

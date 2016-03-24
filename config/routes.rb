@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :demanded_skills
   resources :materials
   resources :skills
-  devise_for :users, :controllers => { :registrations => :registrations }
+  devise_for :users#, :controllers => { :registrations => 'devise/registrations' }
 
  
   #for customer devise controller!

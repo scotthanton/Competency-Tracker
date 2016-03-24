@@ -2,7 +2,7 @@
 
 <h1>Listing User Skill Assignments</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>User</th>
@@ -13,11 +13,16 @@
   </thead>
 
   <tbody>
-    <% @user_skill_assignments.each do |user_skill_assignment| %>
+    <% 
+		@user_skill_assignments.each do |user_skill_assignment|
+			@user=User.where(:id => user_skill_assignment.user_id).first		
+			@skill=Skill.where(:id => user_skill_assignment.skill_id).first
+			@level=SkillLevel.where(:id => user_skill_assignment.level_id).first			
+	%>
       <tr>
-        <td><%= user_skill_assignment.user_id %></td>
-        <td><%= user_skill_assignment.skill_id %></td>
-        <td><%= user_skill_assignment.level_id %></td>
+        <td><%= @user.email %></td>
+        <td><%= @skill.name %></td>
+        <td><%= @level.level %></td>
         <td><%= link_to 'Show', user_skill_assignment %></td>
         <td><%= link_to 'Edit', edit_user_skill_assignment_path(user_skill_assignment) %></td>
         <td><%= link_to 'Destroy', user_skill_assignment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -28,4 +33,4 @@
 
 <br>
 
-<%= link_to 'New User skill assignment', new_user_skill_assignment_path %>
+<%= link_to 'New User skill assignment', new_user_skill_assignment_path, :class => 'btn btn-primary' %>
