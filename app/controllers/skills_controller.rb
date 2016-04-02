@@ -41,6 +41,8 @@ class SkillsController < ApplicationController
 			format.json { render json: @skill.errors, status: :unprocessable_entity }
 		  end
 		end
+	else
+		permission_denied
 	end
   end
 
@@ -57,6 +59,8 @@ class SkillsController < ApplicationController
 			format.json { render json: @skill.errors, status: :unprocessable_entity }
 		  end
 		end
+	else
+		permission_denied
 	end
   end
 
@@ -69,13 +73,19 @@ class SkillsController < ApplicationController
 		  format.html { redirect_to skills_url, notice: 'Skill was successfully destroyed.' }
 		  format.json { head :no_content }
 		end
+	else
+		permission_denied
 	end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_skill
-      @skill = Skill.find(params[:id])
+	   if current_user.try(:user_level) == 9
+		  @skill = Skill.find(params[:id])
+	   else
+	       permission_denied
+	   end			
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

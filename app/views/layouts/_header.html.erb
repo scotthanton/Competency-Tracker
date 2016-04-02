@@ -56,12 +56,12 @@
 							<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Admin
 							<span class="caret"></span></button>
 							<ul class="dropdown-menu">
-								<li><%= link_to "Skills", :controller => :skills, :action => :index %></li>
-								<li><%= link_to "Materials", :controller => :materials, :action => :index %></li>								
-								<li><%= link_to "Skill Assignments", :controller => :user_skill_assignments, :action => :index %></li>
-								<li><%= link_to "Skill Levels", :controller => :skill_levels, :action => :index %></li>								
-								<li><%= link_to "Endorsements", :controller => :endorsements, :action => :index %></li>
-								<li><%= link_to "Prerequisits", :controller => :prerequisites, :action => :index %></li>
+								<li><%= link_to "Skills", :controller => "/skills", :action => :index %></li>
+								<li><%= link_to "Materials", :controller => "/materials", :action => :index %></li>								
+								<li><%= link_to "Skill Assignments", :controller => "/user_skill_assignments", :action => :index %></li>
+								<li><%= link_to "Skill Levels", :controller => "/skill_levels", :action => :index %></li>								
+								<li><%= link_to "Endorsements", :controller => "/endorsements", :action => :index %></li>
+								<li><%= link_to "Prerequisits", :controller => "/prerequisites", :action => :index %></li>
 							
 							</ul>
 							</li>
@@ -69,14 +69,14 @@
 						<% end %>
 					
 					<li><a href="#">My Account</a></li>
-					<li><%= link_to('Edit registration', edit_user_registration_path) %></li>
+					<li class="<%= 'active' if params[:controller] == 'devise/registrations' %>"><%= link_to('Edit registration',  edit_user_registration_path(@user)) %></li>
 					<li><%= link_to("Sign out", destroy_user_session_path, :method => :delete) %></li>
 					<li><%= current_user.user_level %></li>
 					
 					<% else %>
 					
-					<li><%= link_to('Login', new_user_session_path)  %></li>
-					<li><a href="/users/sign_up">Register</a></li>		
+					<li class="<%= 'active' if params[:controller] == 'devise/sessions' %>"><%= link_to('Login', new_user_session_path)  %></li>
+					<li class="<%= 'active' if params[:controller] == 'devise/registrations' %>"><a href="/users/sign_up">Register</a></li>		
 					
 					<% end %>
                 </ul>
