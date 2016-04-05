@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+    <%= csrf_meta_tags %>
+
+    <title><%= content_for?(:title) ? content_for(:title) : "Competency Tracker" %></title>
+	
+	<%= stylesheet_link_tag    'bootstrap.min', media: 'all', 'data-turbolinks-track' => true %>
+	<%= stylesheet_link_tag    'logo-nav', media: 'all', 'data-turbolinks-track' => true %>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+	<%= javascript_include_tag 'jquery', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'bootstrap.min', 'data-turbolinks-track' => true %>
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header pull-left">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+				<a class="navbar-brand" href="/"> 
+                    <img src="<%= image_url('logo.png')  %>" alt="Logo Goes Here">
+				</a> 
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav pull-right">
+                    <% if user_signed_in? %>
+					
+						<% if current_user.user_level == 9 %>
+						  <li>
+							<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Admin
+							<span class="caret"></span></button>
+							<ul class="dropdown-menu">
+								<li><%= link_to "Skills", :controller => "/skills", :action => :index %></li>
+								<li><%= link_to "Materials", :controller => "/materials", :action => :index %></li>								
+								<li><%= link_to "Skill Assignments", :controller => "/user_skill_assignments", :action => :index %></li>
+								<li><%= link_to "Skill Levels", :controller => "/skill_levels", :action => :index %></li>								
+								<li><%= link_to "Endorsements", :controller => "/endorsements", :action => :index %></li>
+								<li><%= link_to "Prerequisits", :controller => "/prerequisites", :action => :index %></li>
+							
+							</ul>
+							</li>
+						
+						<% end %>
+					
+					<li><a href="#">My Account</a></li>
+					<li class="<%= 'active' if params[:controller] == 'devise/registrations' %>"><%= link_to('Edit registration',  edit_user_registration_path(@user)) %></li>
+					<li><%= link_to("Sign out", destroy_user_session_path, :method => :delete) %></li>
+					<li><%= current_user.user_level %></li>
+					
+					<% else %>
+					
+					<li class="<%= 'active' if params[:controller] == 'devise/sessions' %>"><%= link_to('Login', new_user_session_path)  %></li>
+					<li class="<%= 'active' if params[:controller] == 'devise/registrations' %>"><a href="/users/sign_up">Register</a></li>		
+					
+					<% end %>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">

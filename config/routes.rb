@@ -1,4 +1,22 @@
 Rails.application.routes.draw do
+  resources :demanded_skills
+  resources :prerequisits
+  resources :endorsements
+  resources :user_skill_assignments
+  resources :skill_levels
+  resources :prerequisites
+  resources :endorsements
+  resources :replies
+  resources :conversations
+  resources :demanded_skills
+  resources :materials
+  resources :skills
+  devise_for :users
+
+ 
+  #for customer devise controller!
+  #devise_for :users, controllers: { sessions: "users/sessions" }
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

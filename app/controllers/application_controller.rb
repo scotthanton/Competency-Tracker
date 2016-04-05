@@ -4,7 +4,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def index 
-	render text: "Competency Tracker"
+	render :home
+	#render text: "Competency Tracker"
   end
 
+  def permission_denied
+	page_title = 'Unauthorized Access'
+    render :file => "application/401.html", :status => :unauthorized
+  end
 end

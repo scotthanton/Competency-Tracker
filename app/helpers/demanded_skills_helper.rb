@@ -1,0 +1,2 @@
+module DemandedSkillsHelper
+end

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @user_skill_assignment.user_id %>
+</p>
+
+<p>
+  <strong>Skill:</strong>
+  <%= @user_skill_assignment.skill_id %>
+</p>
+
+<p>
+  <strong>Level:</strong>
+  <%= @user_skill_assignment.level_id %>
+</p>
+
+<%= link_to 'Edit', edit_user_skill_assignment_path(@user_skill_assignment) %> |
+<%= link_to 'Back', user_skill_assignments_path %>

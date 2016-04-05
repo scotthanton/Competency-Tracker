@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Level:</strong>
+  <%= @skill_level.level %>
+</p>
+
+<p>
+  <strong>Created at:</strong>
+  <%= @skill_level.created_at %>
+</p>
+
+<%= link_to 'Edit', edit_skill_level_path(@skill_level) %> |
+<%= link_to 'Back', skill_levels_path %>
