@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 # Use sqlite3 as the database for Active Record
@@ -15,6 +14,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'therubyracer', platforms: :ruby
 # Seed dump for viewing the DB
 gem 'seed_dump'
+gem 'rails_12factor'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
