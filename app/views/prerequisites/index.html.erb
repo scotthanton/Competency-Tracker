@@ -5,13 +5,21 @@
 <table class="table">
   <thead>
     <tr>
+	  <th>Skill</th>
+      <th>Prerequisite</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @prerequisites.each do |prerequisite| %>
+    <% 
+	@prerequisites.each do |prerequisite| 
+		@skill=Skill.where(:id => prerequisite.skill_id).first
+		@prerequisite=Skill.where(:id => prerequisite.prerequisite_skill_id).first
+	%>
       <tr>
+        <td><%= @skill.name %></td>
+        <td><%= @prerequisite.name %></td>	  
         <td><%= link_to 'Show', prerequisite %></td>
         <td><%= link_to 'Edit', edit_prerequisite_path(prerequisite) %></td>
         <td><%= link_to 'Destroy', prerequisite, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -22,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Prerequisite', new_prerequisite_path %>
+<%= link_to 'New Prerequisite', new_prerequisite_path, :class => 'btn btn-primary' %>

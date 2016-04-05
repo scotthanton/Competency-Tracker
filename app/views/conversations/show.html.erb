@@ -1,29 +1,54 @@
-<p id="notice"><%= notice %></p>
+<div class="col-md-8 col-centered">
 
-<p>
-  <strong>User id creator:</strong>
-  <%= @conversation.user_id_creator %>
-</p>
+	<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>User id recipient:</strong>
-  <%= @conversation.user_id_recipient %>
-</p>
+	<%= form_for(@reply) do |f| %>
+	  <% if @reply.errors.any? %>
+		<div id="error_explanation">
+		  <h2><%= pluralize(@reply.errors.count, "error") %> prohibited this reply from being saved:</h2>
 
-<p>
-  <strong>Title:</strong>
-  <%= @conversation.title %>
-</p>
+		  <ul>
+		  <% @reply.errors.full_messages.each do |message| %>
+			<li><%= message %></li>
+		  <% end %>
+		  </ul>
+		</div>
+	  <% end %>
 
-<p>
-  <strong>Content:</strong>
-  <%= @conversation.content %>
-</p>
+	  <div class="form-group">
+		<label>Reply</label>
+		<%= f.text_area :content, class: "form-control" %>
+	  </div>
+	  <div class="field" style="display:none;">
+		<%= f.label :created_at %><br>
+		<%= f.datetime_select :created_at %>
+	  </div>
+	   <div class="field" style="display:none;">
+		<%= f.label :conversation_id %><br>
+		<%= f.number_field :conversation_id, :value => @conversation.id %>
+	  </div>
+	  <div class="actions">
+		<%= f.submit "Submit Reply", :class => 'btn btn-primary' %>
+	  </div>
+	<% end %>
 
-<p>
-  <strong>Created at:</strong>
-  <%= @conversation.created_at %>
-</p>
 
-<%= link_to 'Edit', edit_conversation_path(@conversation) %> |
-<%= link_to 'Back', conversations_path %>
+	<% @conversation_replies.each do |reply| 
+			@user=User.where(:id => reply.user_id).first 
+	%>
+
+			<div class="original-message <% if reply.user_id == current_user.id %>my-message<% else %>their-message<% end %>">
+				<div class="user-name"><%=@user.first_name %> <%=@user.last_name %></div><br />
+				<div class="message"><%=reply.content %></div>
+			</div>
+
+	<% end %>
+			
+	<div class="original-message <% if @conversation.user_id_creator == current_user.id %>my-message<% else %>their-message<% end %>">
+		<div class="title"><%= @conversation.title %></div>
+		<div class="user-name"><%=@user_creator.first_name %> <%=@user_creator.last_name %></div><br />
+		<div class="message"><%=@conversation.content %></div>
+	</div>
+
+	<%= link_to 'Back', conversations_path, :class => 'btn btn-default' %> 
+</div>

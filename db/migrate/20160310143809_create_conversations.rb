@@ -6,7 +6,7 @@ class CreateConversations < ActiveRecord::Migration
       t.string :title
       t.text :content
       t.datetime :created_at
-
+	  t.integer :read
       t.timestamps null: false
     end
   end

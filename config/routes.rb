@@ -12,8 +12,10 @@ Rails.application.routes.draw do
   resources :materials
   resources :skills
   devise_for :users
-
- 
+  get 'my_skills/' => 'user_skill_assignments#myskills', :as => 'myskills'
+  get 'my_skills/new' => 'user_skill_assignments#myskills_new', :as => 'myskills_new'  
+  get 'my_skills/:id' => 'user_skill_assignments#myskills_show', :as => 'myskills_show'
+	
   #for customer devise controller!
   #devise_for :users, controllers: { sessions: "users/sessions" }
   

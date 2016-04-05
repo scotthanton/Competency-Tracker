@@ -1,12 +1,40 @@
 class UserSkillAssignmentsController < ApplicationController
-  before_action :set_user_skill_assignment, only: [:show, :edit, :update, :destroy]
+  before_action :set_user_skill_assignment, only: [:show, :myskills_show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:myskills, :myskills_show, :myskills_create, :edit, :update, :destroy]
 
   # GET /user_skill_assignments
   # GET /user_skill_assignments.json
   def index
-    @user_skill_assignments = UserSkillAssignment.all
+  
+	if !params[:Skill].nil? && !params[:SkillLevel].nil? 
+		if params[:Skill][:skill_id] && params[:SkillLevel][:level_id]
+			@skill_id = params[:Skill][:skill_id]
+			@level_id = params[:SkillLevel][:level_id]
+			@user_skill_assignments = UserSkillAssignment.where(:skill_id => @skill_id).where(:skill_level => @level_id).order("created_at DESC")
+			
+		else
+			@user_skill_assignments = UserSkillAssignment.all
+		end
+	else
+		@user_skill_assignments = UserSkillAssignment.all
+	end
   end
-
+  
+  
+  # GET /my_skills
+  def myskills
+	@user_skill_assignments = UserSkillAssignment.where(:user_id => current_user.id)
+  end
+  
+  # GET /my_skills/1
+  def myskills_show
+  end
+  
+  # GET /user_skill_assignments/new
+  def myskills_new
+    @user_skill_assignment = UserSkillAssignment.new
+  end
+  
   # GET /user_skill_assignments/1
   # GET /user_skill_assignments/1.json
   def show
@@ -24,17 +52,37 @@ class UserSkillAssignmentsController < ApplicationController
   # POST /user_skill_assignments
   # POST /user_skill_assignments.json
   def create
-    @user_skill_assignment = UserSkillAssignment.new(user_skill_assignment_params)
+	if params[:user_id].nil?
+	  @user_skill_assignment = UserSkillAssignment.new(user_skill_assignment_params.merge(:user_id => current_user.id))
 
-    respond_to do |format|
-      if @user_skill_assignment.save
-        format.html { redirect_to @user_skill_assignment, notice: 'User skill assignment was successfully created.' }
-        format.json { render :show, status: :created, location: @user_skill_assignment }
-      else
-        format.html { render :new }
-        format.json { render json: @user_skill_assignment.errors, status: :unprocessable_entity }
-      end
-    end
+	  @assignment_check = UserSkillAssignment.where(:user_id => @user_skill_assignment.user_id).where(:skill_id => @user_skill_assignment.skill_id).where(:level_id => @user_skill_assignment.level_id).first
+	  respond_to do |format|
+		if @assignment_check.nil?
+			if @user_skill_assignment.save
+			  format.html { redirect_to myskills_path, notice: 'The skill was successfully added to your profile!' }
+			  format.json { render :show, status: :created, location: @user_skill_assignment }
+			else
+			  format.html { render :new }
+			  format.json { render json: @user_skill_assignment.errors, status: :unprocessable_entity }
+			end
+	     else
+			format.html { redirect_to myskills_path, notice: 'This skill is already on your profile.' }
+			format.json { render :show, status: :created, location: @assignment_check }
+	     end
+	   end
+	else
+		@user_skill_assignment = UserSkillAssignment.new(user_skill_assignment_params)
+
+		respond_to do |format|
+		  if @user_skill_assignment.save
+			format.html { redirect_to @user_skill_assignment, notice: 'User skill assignment was successfully created.' }
+			format.json { render :show, status: :created, location: @user_skill_assignment }
+		  else
+			format.html { render :new }
+			format.json { render json: @user_skill_assignment.errors, status: :unprocessable_entity }
+		  end
+		end
+	end
   end
 
   # PATCH/PUT /user_skill_assignments/1

@@ -30,16 +30,25 @@ class SkillsController < ApplicationController
   def create
   
   	if current_user.try(:user_level) == 9
+	
+		
 		@skill = Skill.new(skill_params)
 
-		respond_to do |format|
-		  if @skill.save
-			format.html { redirect_to @skill, notice: 'Skill was successfully created.' }
-			format.json { render :show, status: :created, location: @skill }
-		  else
-			format.html { render :new }
-			format.json { render json: @skill.errors, status: :unprocessable_entity }
-		  end
+		@skill_check = Skill.where(:name => @skill.name).first
+		
+		if @skill_check.nil?
+		
+			respond_to do |format|
+			  if @skill.save
+				format.html { redirect_to @skill, notice: 'Skill was successfully created.' }
+				format.json { render :show, status: :created, location: @skill }
+			  else
+				format.html { render :new }
+				format.json { render json: @skill.errors, status: :unprocessable_entity }
+			  end
+			end
+		else
+			redirect_to skills_path, notice: 'Skill already exists.'
 		end
 	else
 		permission_denied

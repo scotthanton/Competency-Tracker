@@ -1,4 +1,29 @@
 <p id="notice"><%= notice %></p>
+	
+<%= form_tag(user_skill_assignments_path, :method => "get", id: "search-form", class: "form-inline text-center") do %>
+
+  <div class="form-group">
+    <label>Skill</label>
+	<% if @skill_id %>
+	<%= collection_select(Skill, :skill_id, Skill.all, :id, :name, {prompt: "Select Skill", selected: @skill_id}, {class: "form-control"}) %>
+	<% else %>
+	<%= collection_select(Skill, :skill_id, Skill.all, :id, :name, {prompt: "Select Skill"}, {class: "form-control"}) %>	
+	<% end %>
+  </div>
+  
+  <div class="form-group">
+    <label>Skill Level</label>
+	<% if @level_id %>
+	<%= collection_select(SkillLevel, :level_id, SkillLevel.all, :id, :level, {prompt: "Select Level", selected: @level_id}, {class: "form-control"}) %>	
+	<% else %>
+	<%= collection_select(SkillLevel, :level_id, SkillLevel.all, :id, :level, {prompt: "Select Level"}, {class: "form-control"}) %>	
+	<% end %>
+  </div>
+
+  <%= submit_tag "Search", :name => nil, class: 'btn btn-primary'  %>
+  
+  <br /><br />
+<% end %>
 
 <h1>Listing User Skill Assignments</h1>
 
@@ -23,9 +48,16 @@
         <td><%= @user.email %></td>
         <td><%= @skill.name %></td>
         <td><%= @level.level %></td>
-        <td><%= link_to 'Show', user_skill_assignment %></td>
+        <td><%= link_to 'Show', myskills_show_path(user_skill_assignment.id) %></td>
+		<% if user_signed_in? && current_user.user_level == 1 %>
+        <td><%= link_to 'Message', new_conversation_path(:user_id => @user.id) %></td>
+		<% end %>
+		
+		<% if user_signed_in? && current_user.user_level == 9 %>
+        <td><%= link_to 'Message', new_conversation_path(:user_id => @user.id) %></td>
         <td><%= link_to 'Edit', edit_user_skill_assignment_path(user_skill_assignment) %></td>
         <td><%= link_to 'Destroy', user_skill_assignment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		<% end %>
       </tr>
     <% end %>
   </tbody>
@@ -33,4 +65,6 @@
 
 <br>
 
+<% if user_signed_in? && current_user.user_level == 9 %>
 <%= link_to 'New User skill assignment', new_user_skill_assignment_path, :class => 'btn btn-primary' %>
+<% end %>

@@ -68,7 +68,16 @@
 						
 						<% end %>
 					
-					<li><a href="#">My Account</a></li>
+					<% if current_user.user_level == 1 %>
+						<li><%= link_to "Find People", :controller => "/user_skill_assignments" %></li>							
+					<% end %>
+					
+					<li><%= link_to "Conversations", :controller => "/conversations" %></li>					
+
+					<% if current_user.user_level == 0 %>
+						<li><%= link_to "My Skills", :controller => "/user_skill_assignments", :action => :myskills %></li>	
+					<% end %>
+
 					<li class="<%= 'active' if params[:controller] == 'devise/registrations' %>"><%= link_to('Edit registration',  edit_user_registration_path(@user)) %></li>
 					<li><%= link_to("Sign out", destroy_user_session_path, :method => :delete) %></li>
 					<li><%= current_user.user_level %></li>

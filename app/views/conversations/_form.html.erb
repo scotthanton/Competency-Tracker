@@ -1,37 +1,39 @@
-<%= form_for(@conversation) do |f| %>
-  <% if @conversation.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@conversation.errors.count, "error") %> prohibited this conversation from being saved:</h2>
 
-      <ul>
-      <% @conversation.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+	<%= form_for(@conversation) do |f| %>
+	  <% if @conversation.errors.any? %>
+		<div id="error_explanation">
+		  <h2><%= pluralize(@conversation.errors.count, "error") %> prohibited this conversation from being saved:</h2>
 
-  <div class="field">
-    <%= f.label :user_id_creator %><br>
-    <%= f.number_field :user_id_creator %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id_recipient %><br>
-    <%= f.number_field :user_id_recipient %>
-  </div>
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :content %><br>
-    <%= f.text_area :content %>
-  </div>
-  <div class="field">
-    <%= f.label :created_at %><br>
-    <%= f.datetime_select :created_at %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+		  <ul>
+		  <% @conversation.errors.full_messages.each do |message| %>
+			<li><%= message %></li>
+		  <% end %>
+		  </ul>
+		</div>
+	  <% end %>
+
+	  <div class="form-group">
+		<%= f.label "Recipient" %><br>
+		
+		<% if @selected_recipient %>
+		<%= f.collection_select(:user_id_recipient, @elligible_recipients, :id, :email, {prompt: "Select Recipient", selected: @selected_recipient}, {class: "form-control"}) %>			
+		<% else %>
+		<%= f.collection_select(:user_id_recipient, @elligible_recipients, :id, :email, {prompt: "Select Recipient"}, {class: "form-control"}) %>	
+		<% end %>
+	  </div>
+	  <div class="form-group">
+		<%= f.label :title %><br>
+		<%= f.text_field :title, :class => 'form-control' %>
+	  </div>
+	  <div class="form-group">
+		<%= f.label :content %><br>
+		<%= f.text_area :content, :class => 'form-control' %>
+	  </div>
+	  <div class="form-group" style="display:none;">
+		<%= f.label :created_at %><br>
+		<%= f.datetime_select :created_at %>
+	  </div>
+	  <div class="actions">
+		<%= f.submit "Send Message", :class => 'btn btn-primary'  %>
+	  </div>
+	<% end %>

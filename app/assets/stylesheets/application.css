@@ -37,7 +37,16 @@
 	margin-top:10px;
 }
 
-a.btn-primary, a.btn-success { color:#fff; }
+.form-inline .form-group {
+    margin: 0px 20px;
+}
+
+a.btn-primary, a.btn-success,a.btn-info { color:#fff; }
+.my-message,.their-message {  border-radius: 3px; margin-bottom:10px; padding:10px; } 
+.my-message { background-color:#fff; border:1px solid #c9c9c9; background-color:#fafafa;}
+.their-message { background-color:#CFE4FA; border:1px solid #AFD1F5;}
+.user-name { font-weight:bold; } 
+.original-message .title { font-size:18px; font-weight:bold; margin-bottom:5px; } 
 
 #footer { 
 	margin-top:20px; 
