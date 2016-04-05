@@ -14,7 +14,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'therubyracer', platforms: :ruby
 # Seed dump for viewing the DB
 gem 'seed_dump'
-gem 'rails_12factor'
+gem 'rails_12factor', group: :production
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -48,3 +48,4 @@ group :development do
 end
 
 gem 'devise'
+gem 'puma'
