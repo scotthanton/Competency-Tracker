@@ -8,6 +8,4 @@ one:
   first_name: Scott
   last_name: Hanton
   email: admin@domain.com
-  password: test1234
-  password_confirmation: test1234
   user_level: 9
