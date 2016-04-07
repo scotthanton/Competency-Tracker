@@ -3,13 +3,13 @@
 one:
   user_id_creator: 1
   user_id_recipient: 2
-  title: "This is a sample title"
-  content: "This is my message content"
+  title: This is a sample title
+  content: This is my message content
   created_at: 2016-03-10 10:38:09
 
 two:
   user_id_creator: 2
   user_id_recipient: 1
-  title: "This is a sample title"
-  content: "This is a sample message going the opposite way"
+  title: This is a sample title
+  content: This is a sample message going the opposite way
   created_at: 2016-03-10 10:38:09
