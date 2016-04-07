@@ -5,7 +5,7 @@ This app will be used to keep track of people and their competence level (i.e. b
 
 The Sign up/ Sign in system has been implemented using the Devise gem. Users were further modified to allow for user types (programmer, manager, administrator)
 
-Programmer:
+##Programmer:
 Programmers may add skills they have to their profile, these are a combination of the skill and the level of experience they have with the skill (beginner, intermediate, advanced, expert). Managers will be able to view that they have these skills and may contact the programmer through the apps messaging system. From the programmers profile they may see how many endorsements they have on their skills. 
 
 Manager:
