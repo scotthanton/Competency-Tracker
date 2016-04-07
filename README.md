@@ -9,11 +9,12 @@ Programmers may add skills they have to their profile, these are a combination o
 ##Manager:
 Managers may search for programmers with a specific skillset, this is a combination of the skill and the level of expertise the manager requires in that skill. They may view skills that were recently added to programmers profiles along with endorsements they have received. On the programmers profile a manager may endorse any of their skills, and they may message the programmer from their profile. 
 
-##Conversations:
-Conversations are always between 2 members of the website. A conversation has the messages of the member who with you are talking to highlighted as a seperate color. "New!" message will show on the conversations page if there is a message/conversation which you have not yet read. Once you open the conversation this notification will set read = 1 and dissapear.
 
 ##Administrator:
 The administrator can hold regular conversations between members just as programmers and managers do. o	All functionality which is allowed only by the admin (adding, creating, etc) is verified in the controller class. These actions all require use level 9 to be completed, otherwise an unauthorized page will display. The administrator is allowed to add skills to the database (no duplicates allowed), add materials required for a specific skill + knowledge combination, add skill assignments to any users, add new skill levels, create prerequisites and create endorsements.
+
+##Conversations:
+Conversations are always between 2 members of the website. A conversation has the messages of the member who with you are talking to highlighted as a seperate color. "New!" message will show on the conversations page if there is a message/conversation which you have not yet read. Once you open the conversation this notification will set read = 1 and dissapear.
 
 ##Still Unfinished
 - Adding skills to specific categories
