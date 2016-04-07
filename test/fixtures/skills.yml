@@ -5,7 +5,9 @@
 # below each fixture, per the syntax in the comments below
 #
 one: 
-  name: "PHP"
+  id: 1
+  name: PHP
 
 two: 
-  name: "Java"
+  id: 2
+  name: Java
