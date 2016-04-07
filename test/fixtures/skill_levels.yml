@@ -2,20 +2,20 @@
 
 one:
   id: 1
-  level: Beginner
+  level: "Beginner"
   created_at: 2016-03-10 11:52:40
 
 two:
   id: 2
-  level: Intermediate
+  level: "Intermediate"
   created_at: 2016-03-10 11:52:40
 
 three:
   id: 3
-  level: Advanced
+  level: "Advanced"
   created_at: 2016-03-10 11:52:40
   
 four:
   id: 4
-  level: Expert
+  level: "Expert"
   created_at: 2016-03-10 11:52:40
