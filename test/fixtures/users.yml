@@ -9,9 +9,6 @@ one:
   encrypted_password: "$2a$10$Snkj8zVfxjjABlEi7Er.ke49iey3tH6fXvYfhDBSmjZQ57YjAX/8W"
   first_name: "Scott"
   last_name: "Hanton"
-  reset_password_token: nil
-  reset_password_sent_at: nil
-  remember_created_at: nil
   sign_in_count: 2
   current_sign_in_at: "2016-04-07 12:31:52"
   last_sign_in_at: "2016-04-07 12:20:08"
