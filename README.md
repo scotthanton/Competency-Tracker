@@ -1,8 +1,6 @@
 # Competency-Tracker
 This app will be used to keep track of people and their competence level (i.e. beginner, intermediate, advanced, expert) for various skills that will be entered by the app user. There may exist relationships between the skills that a person selects with other skills e.g. a person can only be a senior software programmer if he/she is a senior tester, etc. In this case, testing will be a prerequisite for senior software programmer. Based on the prerequisites that will be stated on the app for different skills, a person can follow a path to determine what he/she needs to learn to get a desired competency level for a skill. This app can be used by team leaders, business owners, etc. to keep track of the skills of the people under them or keep track of a team in order to delegate tasks to fit peoples skills. Also, it can be used for hiring purposes whereby an employer will login into the app and select the skills they require for a job opening and people that fit those skills will be showcased.
 
-The Sign up/ Sign in system has been implemented using the Devise gem. Users were further modified to allow for user types (programmer, manager, administrator)
-
 ##Programmer:
 Programmers may add skills they have to their profile, these are a combination of the skill and the level of experience they have with the skill (beginner, intermediate, advanced, expert). Managers will be able to view that they have these skills and may contact the programmer through the apps messaging system. From the programmers profile they may see how many endorsements they have on their skills. 
 
