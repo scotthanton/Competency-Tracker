@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20160310160125) do
     t.integer  "skill_id"
     t.integer  "level_id"
     t.integer  "prerequisite_skill_id"
+    t.integer  "prerequisite_level_id"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
   end
