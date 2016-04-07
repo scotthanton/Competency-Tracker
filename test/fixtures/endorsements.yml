@@ -2,10 +2,10 @@
 
 one:
   user_id: 1
-  user_id_endorser: 1
+  user_id_endorser: 2
   user_skill_assignments_id: 1
 
 two:
   user_id: 1
-  user_id_endorser: 1
-  user_skill_assignments_id: 1
+  user_id_endorser: 2
+  user_skill_assignments_id: 2
