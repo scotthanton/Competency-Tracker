@@ -6,8 +6,6 @@
 #
 one: 
   name: "PHP"
-# column: value
-#
+
 two: 
   name: "Java"
-#  column: value
