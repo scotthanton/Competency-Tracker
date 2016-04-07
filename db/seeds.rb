@@ -10,7 +10,7 @@ user.save!
 user = User.new
 user.first_name = 'Manager'
 user.last_name = ''
-user.email = 'manager@hotmail.com'
+user.email = 'manager@domain.com'
 user.password = 'test1234'
 user.password_confirmation = 'test1234'
 user.user_level = '1'
@@ -19,7 +19,7 @@ user.save!
 user = User.new
 user.first_name = 'Programmer'
 user.last_name = ''
-user.email = 'programmer@hotmail.com'
+user.email = 'programmer@domain.com'
 user.password = 'test1234'
 user.password_confirmation = 'test1234'
 user.user_level = '0'

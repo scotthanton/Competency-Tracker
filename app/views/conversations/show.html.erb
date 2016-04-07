@@ -1,7 +1,28 @@
 <div class="col-md-8 col-centered">
 
-	<p id="notice"><%= notice %></p>
+	<% if !notice.nil? %>
+	<div class="alert alert-info">
+	  <%= notice %>
+	</div>
+	<% end %>
+			
+	<div class="original-message <% if @conversation.user_id_creator == current_user.id %>my-message<% else %>their-message<% end %>">
+		<div class="title"><%= @conversation.title %></div>
+		<div class="user-name"><%=@user_creator.first_name %> <%=@user_creator.last_name %></div><br />
+		<div class="message"><%=@conversation.content %></div>
+	</div>
+	
+	<% @conversation_replies.each do |reply| 
+			@user=User.where(:id => reply.user_id).first 
+	%>
 
+			<div class="original-message <% if reply.user_id == current_user.id %>my-message<% else %>their-message<% end %>">
+				<div class="user-name"><%=@user.first_name %> <%=@user.last_name %></div><br />
+				<div class="message"><%=reply.content %></div>
+			</div>
+
+	<% end %>
+	
 	<%= form_for(@reply) do |f| %>
 	  <% if @reply.errors.any? %>
 		<div id="error_explanation">
@@ -32,23 +53,6 @@
 	  </div>
 	<% end %>
 
-
-	<% @conversation_replies.each do |reply| 
-			@user=User.where(:id => reply.user_id).first 
-	%>
-
-			<div class="original-message <% if reply.user_id == current_user.id %>my-message<% else %>their-message<% end %>">
-				<div class="user-name"><%=@user.first_name %> <%=@user.last_name %></div><br />
-				<div class="message"><%=reply.content %></div>
-			</div>
-
-	<% end %>
-			
-	<div class="original-message <% if @conversation.user_id_creator == current_user.id %>my-message<% else %>their-message<% end %>">
-		<div class="title"><%= @conversation.title %></div>
-		<div class="user-name"><%=@user_creator.first_name %> <%=@user_creator.last_name %></div><br />
-		<div class="message"><%=@conversation.content %></div>
-	</div>
 
 	<%= link_to 'Back', conversations_path, :class => 'btn btn-default' %> 
 </div>

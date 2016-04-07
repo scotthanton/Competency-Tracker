@@ -1,12 +1,19 @@
 <div class="col-md-8 col-centered">
-	<p id="notice"><%= notice %></p>
 
+	<% if !notice.nil? %>
+	<div class="alert alert-info">
+	  <%= notice %>
+	</div>
+	<% end %>
+
+	<div class="pull-right">
+		<%= link_to 'Send Message', new_conversation_path, class: 'btn btn-primary ' %>
+	</div>
+	<div class="clr"></div>
+	
 	<h2>Your Conversations</h2>
 	
-	<div class="text-center">
-	<%= link_to 'New Conversation', new_conversation_path, class: 'btn btn-primary ' %><br /><br />
-	</div>
-	
+	<% if @conversations.count > 0 %>
 	<table class="table">
 	  <thead>
 		<tr>
@@ -40,7 +47,9 @@
 		<% end %>
 	  </tbody>
 	</table>
-
+	<% else %>
+	<p class="text-center">You do not yet have any conversations.</p>
+	<% end %>
 	<br>
 
 </div>

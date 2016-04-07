@@ -14,41 +14,38 @@
  *= require_self
  */
  
-.pull-right { 
-	float:right; 
-}
-
-.pull-left { 
-	float:left; 
-}
-
-.col-centered{
-	float: none;
-    margin: 0 auto;
-}
-
+/* General Stuff */
+body { background-color:#eeeeee; padding-bottom:20px; }
+.nice-background{ border:1px solid #e2e2e2; background-color:#fff; margin-top:-20px; padding:30px 30px 40px 30px; }
+.pull-right { float:right; }
+.pull-left { float:left; }
+.clr { clear:both; } 
+.col-centered{ float: none; margin: 0 auto; }
 .col-centered h2 { text-align:center; }
-
-.navbar-brand { 
-	margin-top:15px; 
-}
-
-.dropdown-toggle {
-	margin-top:10px;
-}
-
-.form-inline .form-group {
-    margin: 0px 20px;
-}
-
+.navbar { margin-bottom:0px; }
+.navbar-brand { margin-top:15px; }
+.dropdown-toggle { margin-top:10px; }
+.form-inline .form-group { margin: 0px 20px; }
+h2 { margin-bottom:30px; } 
 a.btn-primary, a.btn-success,a.btn-info { color:#fff; }
+.small-text-1 { font-size:11px; margin-left:10px; } 
+a:hover { background-color:none; }
+.spacing-1 { margin-top:30px; width:100%; }
+/* Home */
+.home h2 { margin-bottom:20px; padding-bottom:20px; border-bottom:1px solid #e4e4e4; } 
+
+/* Chat */
 .my-message,.their-message {  border-radius: 3px; margin-bottom:10px; padding:10px; } 
 .my-message { background-color:#fff; border:1px solid #c9c9c9; background-color:#fafafa;}
 .their-message { background-color:#CFE4FA; border:1px solid #AFD1F5;}
 .user-name { font-weight:bold; } 
 .original-message .title { font-size:18px; font-weight:bold; margin-bottom:5px; } 
 
-#footer { 
-	margin-top:20px; 
-}
- 
+/* Profile Page */
+.profile-page h2 { margin-bottom:0px; padding-bottom:0px; }
+.profile-page h3 { margin-top:0px; margin-bottom:30px; font-size:18px; color:#2660a8; }
+
+/* Footer */
+.span2{ width: 140px; }
+#footer { margin-top:20px; color: #9196aa;}
+#footer .brand img { width: 100px; display: block; margin:15px 0px 10px 0px; }

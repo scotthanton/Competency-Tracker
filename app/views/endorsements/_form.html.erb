@@ -10,8 +10,18 @@
       </ul>
     </div>
   <% end %>
-
+  
+  <div class="form-group">
+    <%= f.label :user_id_endorser %><br>
+	<%= f.collection_select(:user_id_endorser, @managers, :id, :email, {prompt: "Select Endorser"}, {class: "form-control"}) %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :user_skill_assignments_id %><br>
+	<%= f.collection_select(:user_skill_assignments_id, @skillassignments, :id, :skill_with_level, {prompt: "Select User Skill Assignment"}, {class: "form-control"}) %>
+  </div>
+  
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Save", :class => 'btn btn-primary' %>
   </div>
 <% end %>

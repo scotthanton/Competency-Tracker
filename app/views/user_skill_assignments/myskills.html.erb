@@ -1,7 +1,17 @@
-<p id="notice"><%= notice %></p>
+<% if !notice.nil? %>
+<div class="alert alert-info">
+  <%= notice %>
+</div>
+<% end %>
 
-<h1>My Skills</h1>
+<h2 class="text-center">My Skills</h1>
 
+<div class="text-center">
+<%= link_to 'Add Skill', myskills_new_path, :class => 'btn btn-primary' %>
+<div class="spacing-1"></div>
+</div>
+
+<% if @user_skill_assignments.count > 0 %>
 <table class="table">
   <thead>
     <tr>
@@ -23,12 +33,13 @@
         <td><%= @skill.name %></td>
         <td><%= @level.level %></td>
         <td><%= link_to 'Show', myskills_show_path(user_skill_assignment.id) %></td>
-        <td><%= link_to 'Remove', user_skill_assignment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Remove', myskills_destroy_path(user_skill_assignment.id), data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+<% else %>
+<p class="text-center">You have not yet added any skills to your profile</p>
+<% end %>
 <br>
 
-<%= link_to 'Add Skill', myskills_new_path, :class => 'btn btn-primary' %>
