@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   get 'my_skills/' => 'user_skill_assignments#myskills', :as => 'myskills'
   get 'my_skills/new' => 'user_skill_assignments#myskills_new', :as => 'myskills_new'  
   get 'my_skills/:id' => 'user_skill_assignments#myskills_show', :as => 'myskills_show'
+  get 'user/:id' => 'users#show', :as => 'user_show'
+  get 'endorse/:user_skill_assignments_id' => 'endorsements#ajax_create', :as => 'endorse_user'
+  get 'unendorse/:id' => 'endorsements#ajax_destroy', :as => 'unendorse_user'
 	
   #for customer devise controller!
   #devise_for :users, controllers: { sessions: "users/sessions" }

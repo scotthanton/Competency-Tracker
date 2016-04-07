@@ -1,11 +1,12 @@
 <div class="col-md-8 col-centered">
 	<p id="notice"><%= notice %></p>
 
-	<h2>Your Conversations</h2>
-	
-	<div class="text-center">
-	<%= link_to 'New Conversation', new_conversation_path, class: 'btn btn-primary ' %><br /><br />
+	<div class="pull-right">
+		<%= link_to 'Send Message', new_conversation_path, class: 'btn btn-primary ' %>
 	</div>
+	<div class="clr"></div>
+	
+	<h2>Your Conversations</h2>
 	
 	<table class="table">
 	  <thead>

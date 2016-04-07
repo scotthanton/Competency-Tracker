@@ -16,7 +16,7 @@
 		<%= f.label "Recipient" %><br>
 		
 		<% if @selected_recipient %>
-		<%= f.collection_select(:user_id_recipient, @elligible_recipients, :id, :email, {prompt: "Select Recipient", selected: @selected_recipient}, {class: "form-control"}) %>			
+		<%= @selected_recipient.first_name %> <%= @selected_recipient.last_name %> (<%= @selected_recipient.email %>)
 		<% else %>
 		<%= f.collection_select(:user_id_recipient, @elligible_recipients, :id, :email, {prompt: "Select Recipient"}, {class: "form-control"}) %>	
 		<% end %>

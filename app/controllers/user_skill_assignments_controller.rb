@@ -1,6 +1,7 @@
 class UserSkillAssignmentsController < ApplicationController
   before_action :set_user_skill_assignment, only: [:show, :myskills_show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:myskills, :myskills_show, :myskills_create, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:myskills, :myskills_show, :edit, :update, :destroy]
+  before_action :am_i_allowed, only: [:new, :edit, :update, :destroy]
 
   # GET /user_skill_assignments
   # GET /user_skill_assignments.json
@@ -13,10 +14,10 @@ class UserSkillAssignmentsController < ApplicationController
 			@user_skill_assignments = UserSkillAssignment.where(:skill_id => @skill_id).where(:skill_level => @level_id).order("created_at DESC")
 			
 		else
-			@user_skill_assignments = UserSkillAssignment.all
+			@user_skill_assignments = UserSkillAssignment.last(20).reverse
 		end
 	else
-		@user_skill_assignments = UserSkillAssignment.all
+		@user_skill_assignments = UserSkillAssignment.last(20).reverse
 	end
   end
   
@@ -119,4 +120,12 @@ class UserSkillAssignmentsController < ApplicationController
     def user_skill_assignment_params
       params.require(:user_skill_assignment).permit(:user_id, :skill_id, :level_id)
     end
+	
+	def am_i_allowed
+	  if current_user.try(:user_level) == 9
+		return true
+	  else
+	     permission_denied
+	  end
+	end
 end

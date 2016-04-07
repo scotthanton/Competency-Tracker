@@ -1,4 +1,5 @@
 class SkillLevelsController < ApplicationController
+  before_action :am_i_allowed, only: [:index, :new, :create, :update, :destroy, :edit]
   before_action :set_skill_level, only: [:show, :edit, :update, :destroy]
 
   # GET /skill_levels
@@ -71,4 +72,12 @@ class SkillLevelsController < ApplicationController
     def skill_level_params
       params.require(:skill_level).permit(:level, :created_at)
     end
+	
+	def am_i_allowed
+	  if current_user.try(:user_level) == 9
+		return true
+	  else
+	     permission_denied
+	  end
+	end
 end

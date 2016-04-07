@@ -1,0 +1,1 @@
+$('.unendorse-<%= @copy.id %>').closest('td').html('<%= link_to "Endorse", endorse_user_path(:user_skill_assignments_id => @copy.user_skill_assignments_id), remote: true, class: "btn btn-primary endorse endorse-#{@copy.user_skill_assignments_id}" %>');

@@ -13,15 +13,15 @@
  
   <div class="form-group">
     <%= f.label :prerequisite_skill_id %><br>
-	<%= f.collection_select(:prerequisite_skill_id, Skill.all, :id, :name) %>
+	<%= f.collection_select(:prerequisite_skill_id, Skill.all, :id, :name, {prompt: "Select Prerequisite"}, {class: "form-control"}) %>
   </div>
   
    <div class="form-group">
     <%= f.label :skill_id %><br>
-	<%= f.collection_select(:skill_id, Skill.all, :id, :name) %>
+	<%= f.collection_select(:skill_id, Skill.all, :id, :name, {prompt: "Select Skill"}, {class: "form-control"}) %>
   </div>
   
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Save", :class => 'btn btn-primary' %>
   </div>
 <% end %>

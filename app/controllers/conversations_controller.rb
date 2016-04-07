@@ -16,7 +16,7 @@ class ConversationsController < ApplicationController
 	@user_creator=User.where(:id => @conversation.user_id_creator).first	
 	@user_recipient=User.where(:id => @conversation.user_id_recipient).first	
 	@reply = Reply.new
-	@conversation_replies = Reply.where(:conversation_id => @conversation.id).order('replies.id DESC')
+	@conversation_replies = Reply.where(:conversation_id => @conversation.id).order('replies.id ASC')
 	
 	@conversation_replies_them = @conversation_replies.where.not(:user_id => current_user.id)
 	@conversation_replies_them.update_all(:read => '1')
@@ -28,7 +28,7 @@ class ConversationsController < ApplicationController
 	@elligible_recipients = User.all.reject {|user| user == current_user}
 	
 	if !params[:user_id].nil?
-		@selected_recipient = User.where(:id => params[:user_id]);
+		@selected_recipient = User.where(:id => params[:user_id]).first;
 	end
   end
 

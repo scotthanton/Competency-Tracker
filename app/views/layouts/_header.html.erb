@@ -61,7 +61,7 @@
 								<li><%= link_to "Skill Assignments", :controller => "/user_skill_assignments", :action => :index %></li>
 								<li><%= link_to "Skill Levels", :controller => "/skill_levels", :action => :index %></li>								
 								<li><%= link_to "Endorsements", :controller => "/endorsements", :action => :index %></li>
-								<li><%= link_to "Prerequisits", :controller => "/prerequisites", :action => :index %></li>
+								<!--<li><%= link_to "Prerequisits", :controller => "/prerequisites", :action => :index %></li>-->
 							
 							</ul>
 							</li>
@@ -69,18 +69,17 @@
 						<% end %>
 					
 					<% if current_user.user_level == 1 %>
-						<li><%= link_to "Find People", :controller => "/user_skill_assignments" %></li>							
+						<li class="<%= 'active' if (params[:controller] == 'user_skill_assignments') || params[:controller] == 'users' %>"><%= link_to "Find People", :controller => "/user_skill_assignments" %></li>							
 					<% end %>
 					
-					<li><%= link_to "Conversations", :controller => "/conversations" %></li>					
+					<li class="<%= 'active' if params[:controller] == 'conversations' %>"><%= link_to "Conversations", :controller => "/conversations" %></li>					
 
 					<% if current_user.user_level == 0 %>
-						<li><%= link_to "My Skills", :controller => "/user_skill_assignments", :action => :myskills %></li>	
+						<li class="<%= 'active' if params[:controller] == 'user_skill_assignments' && (params[:action] == 'myskills_show' || params[:action] == 'myskills' || params[:action] == 'myskills_new') %>"><%= link_to "My Skills", :controller => "/user_skill_assignments", :action => :myskills %></li>	
 					<% end %>
 
 					<li class="<%= 'active' if params[:controller] == 'devise/registrations' %>"><%= link_to('Edit registration',  edit_user_registration_path(@user)) %></li>
 					<li><%= link_to("Sign out", destroy_user_session_path, :method => :delete) %></li>
-					<li><%= current_user.user_level %></li>
 					
 					<% else %>
 					
@@ -97,4 +96,4 @@
 
     <!-- Page Content -->
     <div class="container">
-        <div class="row">
+        <div class="row nice-background">

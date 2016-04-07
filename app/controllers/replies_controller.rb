@@ -1,5 +1,6 @@
 class RepliesController < ApplicationController
   before_action :set_reply, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:index, :create, :show, :edit, :update, :destroy]
 
   # GET /replies
   # GET /replies.json

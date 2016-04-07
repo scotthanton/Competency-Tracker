@@ -26,15 +26,19 @@ class PrerequisitesController < ApplicationController
   def create
     @prerequisite = Prerequisite.new(prerequisite_params)
 
-    respond_to do |format|
-      if @prerequisite.save
-        format.html { redirect_to @prerequisite, notice: 'Prerequisite was successfully created.' }
-        format.json { render :show, status: :created, location: @prerequisite }
-      else
-        format.html { render :new }
-        format.json { render json: @prerequisite.errors, status: :unprocessable_entity }
-      end
-    end
+	if @prerequisit.prerequisite_skill_id == @prerequisit.skill_id
+		redirect_to prerequisits_path, notice: 'The prerequisite cannot be the skill.'
+	else
+		respond_to do |format|
+		  if @prerequisite.save
+			format.html { redirect_to @prerequisite, notice: 'Prerequisite was successfully created.' }
+			format.json { render :show, status: :created, location: @prerequisite }
+		  else
+			format.html { render :new }
+			format.json { render json: @prerequisite.errors, status: :unprocessable_entity }
+		  end
+		end
+	end
   end
 
   # PATCH/PUT /prerequisites/1
