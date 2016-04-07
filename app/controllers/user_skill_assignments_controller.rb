@@ -129,7 +129,7 @@ class UserSkillAssignmentsController < ApplicationController
   def destroy
     @user_skill_assignment.destroy
     respond_to do |format|
-      format.html { redirect_to user_skill_assignments_url, notice: 'User skill assignment was successfully destroyed.' }
+      format.html { redirect_to myskills_path, notice: 'User skill assignment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

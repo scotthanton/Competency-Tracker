@@ -50,8 +50,15 @@
 			  <th>User</th>
 			  <th>Skill</th>
 			  <th>Level</th>
-			  <th>Endorsements</th>			  
-			  <th colspan="3"></th>
+			  <th>Skill Details</th>			  
+			  <th>Endorsements</th>	
+			  <th>Skill Details</th>
+			  <th>View User</th>			  
+			  <th>Message</th>			  
+			  
+			  <% if user_signed_in? && current_user.user_level == 9 %>	
+			  <th colspan="2"></th>
+			  <% end %>
 			</tr>
 		  </thead>
 
@@ -68,14 +75,14 @@
 				<td><%= @user.email %></td>
 				<td><%= @skill.name %></td>
 				<td><%= @level.level %></td>
-				<td><%= @endorsements.count %></td>				
+				<td class="text-center"><%= @endorsements.count %></td>		
+				<td><%= link_to 'Skill Details', myskills_show_path(user_skill_assignment.id), :class => 'btn btn-warning btn-sm' %></td>
 				<td><%= link_to 'View User', user_show_path(@user.id), :class => 'btn btn-info btn-sm' %></td>
 				<% if user_signed_in? && current_user.user_level == 1 %>
 				<td><%= link_to 'Message', new_conversation_path(:user_id => @user.id), :class => 'btn btn-primary btn-sm' %></td>
 				<% end %>
 				
 				<% if user_signed_in? && current_user.user_level == 9 %>
-				<td><%= link_to 'Message', new_conversation_path(:user_id => @user.id) %></td>
 				<td><%= link_to 'Edit', edit_user_skill_assignment_path(user_skill_assignment) %></td>
 				<td><%= link_to 'Destroy', user_skill_assignment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 				<% end %>
@@ -88,21 +95,26 @@
 	</div>
 	<% else %>
 	<div class="spacing-1"></div>
+	
+	<% if user_signed_in? && current_user.user_level == 9 %>
+	<%= link_to 'New User skill assignment', new_user_skill_assignment_path, :class => 'btn btn-primary' %>
+	<% end %>
+	
 	<div class="row">
 		<h2>Recently Aquired Skills</h2>
 		<p>Bellow are skills which have recently been added to our programmer profiles.</p>
-		<% if user_signed_in? && current_user.user_level == 9 %>
-		<%= link_to 'New User skill assignment', new_user_skill_assignment_path, :class => 'btn btn-primary' %>
-		<% end %>
-
+		<% if @user_skill_assignments.count > 0 %>
 		<table class="table text-left">
 		  <thead>
 			<tr>
 			  <th>User</th>
 			  <th>Skill</th>
 			  <th>Level</th>
-			  <th>Endorsements</th>			  			  
-			  <th colspan="3"></th>
+			  <th>Endorsements</th>		
+			  <th>Skill Details</th>
+			  <th>View User</th>			  
+			  <th>Message</th>				  
+			  <th colspan="2"></th>
 			</tr>
 		  </thead>
 
@@ -119,14 +131,14 @@
 				<td><%= @user.email %></td>
 				<td><%= @skill.name %></td>
 				<td><%= @level.level %></td>
-				<td><%= @endorsements.count %></td>								
+				<td class="text-center"><%= @endorsements.count %></td>
+				<td><%= link_to 'Skill Details', myskills_show_path(user_skill_assignment.id), :class => 'btn btn-warning btn-sm' %></td>
 				<td><%= link_to 'View User', user_show_path(@user.id), :class => 'btn btn-info btn-sm' %></td>
 				<% if user_signed_in? && current_user.user_level == 1 %>
 				<td><%= link_to 'Message', new_conversation_path(:user_id => @user.id), :class => 'btn btn-primary btn-sm' %></td>
 				<% end %>
 				
 				<% if user_signed_in? && current_user.user_level == 9 %>
-				<td><%= link_to 'Message', new_conversation_path(:user_id => @user.id) %></td>
 				<td><%= link_to 'Edit', edit_user_skill_assignment_path(user_skill_assignment) %></td>
 				<td><%= link_to 'Destroy', user_skill_assignment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 				<% end %>
@@ -134,6 +146,9 @@
 			<% end %>
 		  </tbody>
 		</table>
+		<% else %>
+		<p>Sorry, there have not been any skills added to a programmer profile yet.</p>
+		<% end %>
 	</div>
 	<% end %>
 </div>
