@@ -1,4 +1,32 @@
-<center>
-	<h2>Homepage</h2>
-	<p>This is our homepage content here</p>
-</center>
+<div class="col-md-8 col-centered">
+    <% if user_signed_in? %>
+		<% if current_user.user_level == 0 %>
+		
+		<h2>Welcome Programmer</h2>
+		<p>You are signed in under a programmer account type.</p>
+		<p>What this means is your experience has been optimized for completing your profile and specifying what skills you specialize in.</p>
+		<p>You can add skills to your profile based on the level of knowledge you have of that skill. There are materials listed for each skill 
+		and skill level combination which explain the level of knowledge you should have before adding it to your profile.</p>
+		<p>When a manager is looking for a programmer with knowledge of a specific skill they may message you.</p>
+
+		<% elsif current_user.user_level == 1 %>
+		
+		<h2>Welcome Manager</h2><br />
+		<p>You are signed in under an manager account type.</p>
+		<p>What this means is your experience has been optimized for finding employees with the specific skills you need.</p>
+		<p>You can search for employees with the desired skill / skill level you require and message them.</p>
+		
+		<% else %>
+		
+		<h2>Welcome Admin</h2>
+		<p>You are signed in under an administrator account type.</p>
+		<p>What this means is your experience has been optimized for managing the website.</p>
+		<p>You can edit all data present in the database, including adding new skills, new skill materials, editing users skills and much more.</p>
+		
+		<% end %>
+	<% else %>
+		<h2>Welcome</h2>	
+		<p>It looks like you are not signed in.</p>
+		<p>If you have an account you may sign in <a style="font-weight:bold;" href="/users/sign_in">Sign In</a>.</p>
+		<p>If you do not yet have an account, you may <a style="font-weight:bold;" href="/users/sign_up">Register</a> as either a Manager or a Programmer.</p>
+	<% end %>

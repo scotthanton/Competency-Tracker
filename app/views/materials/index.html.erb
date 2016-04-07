@@ -16,12 +16,16 @@
   </thead>
 
   <tbody>
-    <% @materials.each do |material| %>
+    <% 
+		@materials.each do |material| 
+			@skill=Skill.where(:id => material.skill_id).first
+			@level=SkillLevel.where(:id => material.level_id).first	
+	%>
       <tr>
-        <td><%= material.skill_id %></td>
+        <td><%= @skill.name %></td>
         <td><%= material.description %></td>
         <td><%= material.material_to_learn %></td>
-        <td><%= material.level %></td>
+        <td><%= @level.level %></td>
         <td><%= material.created_at %></td>
         <td><%= material.updated_at %></td>
         <td><%= link_to 'Show', material %></td>

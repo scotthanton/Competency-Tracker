@@ -1,0 +1,35 @@
+<div class="col-md-6 col-centered">
+
+	<h1>Add Skill</h1>
+
+	<%= form_for(@user_skill_assignment) do |f| %>
+	  <% if @user_skill_assignment.errors.any? %>
+		<div id="error_explanation">
+		  <h2><%= pluralize(@user_skill_assignment.errors.count, "error") %> prohibited this user_skill_assignment from being saved:</h2>
+
+		  <ul>
+		  <% @user_skill_assignment.errors.full_messages.each do |message| %>
+			<li><%= message %></li>
+		  <% end %>
+		  </ul>
+		</div>
+	  <% end %>
+	  
+	  <div class="form-group">
+		<%= f.label :skill_id %><br>
+		<%= f.collection_select(:skill_id, Skill.all, :id, :name, {prompt: "Select Skill"}, {class: "form-control"}) %>
+	  </div>
+	  
+	  <div class="form-group">
+		<%= f.label :level_id %><br>
+		<%= f.collection_select(:level_id, SkillLevel.all, :id, :level, {prompt: "Select level"}, {class: "form-control"}) %>	
+	  </div>
+	  <div class="actions">
+		<%= f.submit "Add Skill", class: 'btn btn-primary' %>
+	  </div>
+	<% end %>
+
+
+	<%= link_to 'Back', user_skill_assignments_path, class: 'btn btn-default' %>
+	
+</div>

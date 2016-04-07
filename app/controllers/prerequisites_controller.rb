@@ -69,6 +69,6 @@ class PrerequisitesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def prerequisite_params
-      params.fetch(:prerequisite, {})
+	  params.require(:prerequisite).permit(:skill_id, :prerequisite_skill_id, :created_at, :updated_at)
     end
 end

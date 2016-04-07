@@ -1,25 +1,25 @@
 user = User.new
 user.first_name = 'Scott'
 user.last_name = 'Hanton'
-user.email = 'scott_hanton94@hotmail.com'
+user.email = 'admin@domain.com'
 user.password = 'test1234'
 user.password_confirmation = 'test1234'
 user.user_level = '9'
 user.save!
 
 user = User.new
-user.first_name = 'Employer'
+user.first_name = 'Manager'
 user.last_name = ''
-user.email = 'employer@hotmail.com'
+user.email = 'manager@hotmail.com'
 user.password = 'test1234'
 user.password_confirmation = 'test1234'
 user.user_level = '1'
 user.save!
 
 user = User.new
-user.first_name = 'User'
+user.first_name = 'Programmer'
 user.last_name = ''
-user.email = 'user@hotmail.com'
+user.email = 'programmer@hotmail.com'
 user.password = 'test1234'
 user.password_confirmation = 'test1234'
 user.user_level = '0'

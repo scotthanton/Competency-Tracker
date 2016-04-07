@@ -24,17 +24,23 @@ class RepliesController < ApplicationController
   # POST /replies
   # POST /replies.json
   def create
-    @reply = Reply.new(reply_params)
-
-    respond_to do |format|
-      if @reply.save
-        format.html { redirect_to @reply, notice: 'Reply was successfully created.' }
-        format.json { render :show, status: :created, location: @reply }
-      else
-        format.html { render :new }
-        format.json { render json: @reply.errors, status: :unprocessable_entity }
-      end
-    end
+	@conversation = Conversation.where(:id => params[:reply][:conversation_id]).first;
+	
+	if @conversation.user_id_creator == current_user.id || @conversation.user_id_recipient == current_user.id
+		@reply = Reply.new(reply_params.merge(:user_id => current_user.id))
+    
+		#respond_to do |format|
+		@reply.save
+			#format.html { redirect_to @reply, notice: 'Reply was successfully created.' }
+			#format.json { render :show, status: :created, location: @reply }
+		 # else
+			#redirect_to action: conversation, id: params[:conversation_id]
+			#format.html { render :new }
+			#format.json { render json: @reply.errors, status: :unprocessable_entity }
+		  #end
+		#end
+	end
+	redirect_to @conversation
   end
 
   # PATCH/PUT /replies/1
@@ -69,6 +75,6 @@ class RepliesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reply_params
-      params.require(:reply).permit(:user_id, :content, :created_at)
+      params.require(:reply).permit(:conversation_id, :user_id, :content, :created_at)
     end
 end

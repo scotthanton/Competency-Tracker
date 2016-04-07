@@ -1,0 +1,31 @@
+<%
+	@skill=Skill.where(:id => @user_skill_assignment.skill_id).first
+	@level=SkillLevel.where(:id => @user_skill_assignment.level_id).first
+	@material=Material.where(:skill_id => @skill.id, :level_id => @level.id).first
+	
+%>
+<div class="col-md-4 col-centered">
+	<p id="notice"><%= notice %></p>
+
+	<h2><%= @skill.name %></h2>
+	<h4 style="text-align:center;"><%= @level.level %></h4>
+
+	<% if !@material.nil? %>
+	<div class="row">
+		<h4>Description</h4>
+		<p><%= @material.description %></p>
+	</div>
+	
+	<div class="row">	
+		<h4>Materials To Know</h4>
+		<p><%= @material.material_to_learn %></p>
+	</div>
+	<% else %>
+	
+	<p>There have been no materials defined for this skill at the selected level of knowledge.</p>
+	
+	<% end %>
+	
+	<br />
+	<%= link_to 'Back', myskills_path, :class => 'btn btn-primary' %>
+</div>
