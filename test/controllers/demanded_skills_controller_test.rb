@@ -18,7 +18,7 @@ class DemandedSkillsControllerTest < ActionController::TestCase
 
   test "should create demanded_skill" do
     assert_difference('DemandedSkill.count') do
-      post :create, demanded_skill: { created_at: @demanded_skill.created_at, employer_user_id: @demanded_skill.employer_user_id, level: @demanded_skill.level_id , skill_id: @demanded_skill.skill_id }
+      post :create, demanded_skill: { created_at: @demanded_skill.created_at, employer_user_id: @demanded_skill.employer_user_id, level_id: @demanded_skill.level_id , skill_id: @demanded_skill.skill_id }
     end
 
     assert_redirected_to demanded_skill_path(assigns(:demanded_skill))
@@ -35,7 +35,7 @@ class DemandedSkillsControllerTest < ActionController::TestCase
   end
 
   test "should update demanded_skill" do
-    patch :update, id: @demanded_skill, demanded_skill: { created_at: @demanded_skill.created_at, employer_user_id: @demanded_skill.employer_user_id, level: @demanded_skill.level_id, skill_id: @demanded_skill.skill_id }
+    patch :update, id: @demanded_skill, demanded_skill: { created_at: @demanded_skill.created_at, employer_user_id: @demanded_skill.employer_user_id, level_id: @demanded_skill.level_id, skill_id: @demanded_skill.skill_id }
     assert_redirected_to demanded_skill_path(assigns(:demanded_skill))
   end
 
