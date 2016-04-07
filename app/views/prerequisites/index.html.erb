@@ -6,6 +6,7 @@
   <thead>
     <tr>
 	  <th>Skill</th>
+	  <th>Level</th>	  
       <th>Prerequisite</th>
       <th colspan="3"></th>
     </tr>
@@ -15,11 +16,15 @@
     <% 
 	@prerequisites.each do |prerequisite| 
 		@skill=Skill.where(:id => prerequisite.skill_id).first
+		@level=SkillLevel.where(:id => prerequisite.level_id).first	
 		@prerequisite=Skill.where(:id => prerequisite.prerequisite_skill_id).first
+		@prerequisite_level=SkillLevel.where(:id => prerequisite.prerequisite_level_id).first
+		
 	%>
       <tr>
         <td><%= @skill.name %></td>
-        <td><%= @prerequisite.name %></td>	  
+        <td><%= @level.level %></td>		
+        <td><%= @prerequisite.name %>: <%= @prerequisite_level.level %></td>	  
         <td><%= link_to 'Show', prerequisite %></td>
         <td><%= link_to 'Edit', edit_prerequisite_path(prerequisite) %></td>
         <td><%= link_to 'Destroy', prerequisite, method: :delete, data: { confirm: 'Are you sure?' } %></td>

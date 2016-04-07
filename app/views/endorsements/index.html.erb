@@ -1,6 +1,10 @@
 <div class="col-md-12 col-centered">
 
-	<p id="notice"><%= notice %></p>
+	<% if !notice.nil? %>
+	<div class="alert alert-info">
+	  <%= notice %>
+	</div>
+	<% end %>
 
 	<h1>Listing Endorsements</h1>
 

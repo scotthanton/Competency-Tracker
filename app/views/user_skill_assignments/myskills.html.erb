@@ -1,4 +1,8 @@
-<p id="notice"><%= notice %></p>
+<% if !notice.nil? %>
+<div class="alert alert-info">
+  <%= notice %>
+</div>
+<% end %>
 
 <h1>My Skills</h1>
 
@@ -23,7 +27,7 @@
         <td><%= @skill.name %></td>
         <td><%= @level.level %></td>
         <td><%= link_to 'Show', myskills_show_path(user_skill_assignment.id) %></td>
-        <td><%= link_to 'Remove', user_skill_assignment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Remove', myskills_destroy_path(user_skill_assignment.id), data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

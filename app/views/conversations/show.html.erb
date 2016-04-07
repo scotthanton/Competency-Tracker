@@ -1,6 +1,10 @@
 <div class="col-md-8 col-centered">
 
-	<p id="notice"><%= notice %></p>
+	<% if !notice.nil? %>
+	<div class="alert alert-info">
+	  <%= notice %>
+	</div>
+	<% end %>
 			
 	<div class="original-message <% if @conversation.user_id_creator == current_user.id %>my-message<% else %>their-message<% end %>">
 		<div class="title"><%= @conversation.title %></div>

@@ -1,5 +1,10 @@
 <div class="col-md-8 col-centered">
-	<p id="notice"><%= notice %></p>
+
+	<% if !notice.nil? %>
+	<div class="alert alert-info">
+	  <%= notice %>
+	</div>
+	<% end %>
 
 	<div class="pull-right">
 		<%= link_to 'Send Message', new_conversation_path, class: 'btn btn-primary ' %>

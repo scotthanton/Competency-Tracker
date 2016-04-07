@@ -1,6 +1,6 @@
 class UserSkillAssignmentsController < ApplicationController
-  before_action :set_user_skill_assignment, only: [:show, :myskills_show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:myskills, :myskills_show, :edit, :update, :destroy]
+  before_action :set_user_skill_assignment, only: [:show, :myskills_show, :edit, :update, :destroy, :myskills_destroy]
+  before_action :authenticate_user!, only: [:myskills, :myskills_show, :edit, :update, :destroy, :myskills_destroy]
   before_action :am_i_allowed, only: [:new, :edit, :update, :destroy]
 
   # GET /user_skill_assignments
@@ -31,9 +31,20 @@ class UserSkillAssignmentsController < ApplicationController
   def myskills_show
   end
   
-  # GET /user_skill_assignments/new
+  # GET /my_skills/new
   def myskills_new
     @user_skill_assignment = UserSkillAssignment.new
+  end
+
+  # GET /my_skills/destroy/:id
+  def myskills_destroy
+	if @user_skill_assignment.user_id == current_user.id
+		@user_skill_assignment.destroy
+		respond_to do |format|
+		  format.html { redirect_to my_skills_path, notice: 'User skill assignment was successfully destroyed.' }
+		  format.json { head :no_content }
+		end
+	end
   end
   
   # GET /user_skill_assignments/1
@@ -54,23 +65,36 @@ class UserSkillAssignmentsController < ApplicationController
   # POST /user_skill_assignments.json
   def create
 	if params[:user_id].nil?
+	
 	  @user_skill_assignment = UserSkillAssignment.new(user_skill_assignment_params.merge(:user_id => current_user.id))
-
 	  @assignment_check = UserSkillAssignment.where(:user_id => @user_skill_assignment.user_id).where(:skill_id => @user_skill_assignment.skill_id).where(:level_id => @user_skill_assignment.level_id).first
+
+	  @prerequisite = Prerequisite.where(:skill_id => @user_skill_assignment.skill_id).where(:level_id => @user_skill_assignment.level_id).first
+	  if @prerequisite
+		@prerequisite_skill = Skill.where(:id => @prerequisite.prerequisite_skill_id).first
+		@prerequisite_level = SkillLevel.where(:id => @prerequisite.prerequisite_level_id).first
+		@user_has = UserSkillAssignment.where(:user_id =>@user_skill_assignment.user_id).where(:skill_id => @prerequisite_skill.id).where(:level_id => @prerequisite_level.id).first
+	  end
+	  
 	  respond_to do |format|
 		if @assignment_check.nil?
-			if @user_skill_assignment.save
-			  format.html { redirect_to myskills_path, notice: 'The skill was successfully added to your profile!' }
-			  format.json { render :show, status: :created, location: @user_skill_assignment }
-			else
-			  format.html { render :new }
-			  format.json { render json: @user_skill_assignment.errors, status: :unprocessable_entity }
+			if @prerequisite.nil? || !@user_has.nil?
+			   if @user_skill_assignment.save
+			     format.html { redirect_to myskills_path, notice: 'The skill was successfully added to your profile!' }
+			     format.json { render :show, status: :created, location: @user_skill_assignment }
+			   else
+			     format.html { render :new }
+			     format.json { render json: @user_skill_assignment.errors, status: :unprocessable_entity }
+			   end
+		    else
+				format.html { redirect_to myskills_path, notice: "You do not have the prerequisite for this skill #{@prerequisite_skill.name}: #{@prerequisite_level.level}" }
+				format.json { render :show, status: :created, location: @assignment_check }
 			end
-	     else
+		else
 			format.html { redirect_to myskills_path, notice: 'This skill is already on your profile.' }
 			format.json { render :show, status: :created, location: @assignment_check }
-	     end
-	   end
+		end
+	  end
 	else
 		@user_skill_assignment = UserSkillAssignment.new(user_skill_assignment_params)
 
