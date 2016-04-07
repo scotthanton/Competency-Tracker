@@ -9,5 +9,5 @@ one:
 two:
   user_id: 1
   conversation_id: 2
-  content: "This is a reply to a message someone sent me."
+  content: "This is a reply to a message someone sent me. "
   created_at: 2016-03-10 10:38:38
